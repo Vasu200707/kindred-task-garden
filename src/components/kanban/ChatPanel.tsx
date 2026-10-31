@@ -94,9 +94,9 @@ function ChatBody({ initial }: { initial: UIMessage[] }) {
 
   const busy = status === "submitted" || status === "streaming";
 
-  async function clearChat() {
+  async function clearChat(): Promise<void> {
     const { error } = await supabase.from("chat_messages").delete().neq("message_id", "");
-    if (error) return toast.error("Couldn't clear chat");
+    if (error) { toast.error("Couldn't clear chat"); return; }
     setMessages([]);
   }
 
