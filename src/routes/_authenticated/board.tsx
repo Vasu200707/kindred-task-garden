@@ -82,7 +82,7 @@ function Board() {
   const setTasks = (fn: (t: Task[]) => Task[]) => qc.setQueryData<Task[]>(tasksQuery.queryKey, (old) => fn(old ?? []));
 
   const save = useMutation({
-    mutationFn: async (args: { id?: string; draft: Partial<TaskDraft> & { position?: number } }) => {
+    mutationFn: async (args: { id?: string | undefined; draft: Partial<TaskDraft> & { position?: number } }) => {
       if (args.id) {
         const { error } = await supabase.from("tasks").update({ ...args.draft, updated_at: new Date().toISOString() }).eq("id", args.id);
         if (error) throw error;
