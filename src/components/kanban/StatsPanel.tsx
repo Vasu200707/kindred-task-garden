@@ -1,9 +1,8 @@
-import { CalendarClock, Sparkles as _unused } from "lucide-react";
+import { CalendarClock } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import type { Task } from "@/lib/tasks";
 import { cn } from "@/lib/utils";
 
-void _unused;
 
 export function StatsPanel({ tasks }: { tasks: Task[] }) {
   const total = tasks.length;
